@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private Sessions | Sacred House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0f3b26;
+    --green-card: #17492f;
+    --cream: #fdf4ea;
+    --peach: #f9c6a4;
+    --peach-deep: #fbb894;
+    --coral: #c8401c;
+    --ink: #0f3b26;
+    --muted: #4d5a52;
+    --line: #efdcc9;
+    --display: "Anton", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+    --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .hero { background: var(--green); color: var(--cream); padding: 64px 0 56px; }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--peach); margin: 0 0 18px; }
+  .hero h1 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(48px, 9vw, 104px); line-height: .92; letter-spacing: .005em; margin: 0 0 22px; max-width: 12ch; }
+  .hero p.lede { font-size: clamp(17px, 2vw, 21px); line-height: 1.55; max-width: 34em; margin: 0 0 30px; color: #f3e8dc; }
+  .jump { display: flex; flex-wrap: wrap; gap: 10px; }
+  .jump a { text-decoration: none; font-weight: 600; font-size: 15px; padding: 12px 20px; border-radius: 999px; border: 1.5px solid rgba(253,244,234,.45); color: var(--cream); }
+  .jump a.primary { background: var(--peach); border-color: var(--peach); color: var(--green); }
+  .jump a:hover { border-color: var(--peach); }
+
+  /* Groups */
+  .group { padding: 64px 0 8px; scroll-margin-top: 12px; }
+  .group h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(36px, 5.5vw, 58px); line-height: 1; margin: 0 0 8px; }
+  .group .intro { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0 0 26px; max-width: 40em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 26px 26px 24px; display: flex; flex-direction: column; }
+  .card h3 { font-size: 21px; font-weight: 600; line-height: 1.25; margin: 0 0 10px; }
+  .card .tag { color: var(--muted); font-size: 15.5px; line-height: 1.6; margin: 0 0 18px; flex: 1; }
+  .facts { display: flex; align-items: baseline; gap: 14px; margin: 0 0 6px; }
+  .price { font-family: var(--display); font-size: 34px; line-height: 1; }
+  .dur { font-size: 15px; font-weight: 500; color: var(--muted); }
+  .note { font-size: 13.5px; color: var(--coral); font-weight: 600; margin: 0 0 18px; min-height: 1.4em; }
+  .actions { display: flex; align-items: center; gap: 18px; }
+  .book { flex: 1; text-align: center; text-decoration: none; background: var(--green); color: var(--cream); font-weight: 700; font-size: 16px; padding: 15px 18px; border-radius: 12px; }
+  .book:hover { background: #164d33; }
+  .details { color: var(--coral); font-weight: 600; font-size: 15px; text-decoration: none; white-space: nowrap; }
+  .details:hover { text-decoration: underline; }
+
+  /* Signature steam: the one bold moment */
+  .signature { background: var(--peach); border-radius: 28px; padding: 34px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: end; margin-bottom: 20px; }
+  .signature .label { font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--coral); margin: 0 0 12px; }
+  .signature h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(38px, 5vw, 60px); line-height: .95; margin: 0 0 14px; }
+  .signature p { font-size: 16px; line-height: 1.6; margin: 0; max-width: 32em; }
+  .signature .side { display: flex; flex-direction: column; gap: 14px; }
+  .signature .facts .price { font-size: 46px; }
+  .signature .dur { color: var(--green); }
+  .signature .book { flex: none; }
+
+  .fineprint { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin: 18px 0 0; max-width: 46em; }
+
+  /* Membership banner */
+  .banner { margin: 64px 0 0; background: var(--peach); border-radius: 22px; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; text-decoration: none; color: var(--green); }
+  .banner strong { display: block; font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 30px; line-height: 1.05; }
+  .banner span { font-size: 15.5px; }
+  .banner .arrow { flex: none; width: 58px; height: 58px; border-radius: 50%; background: var(--green); color: var(--cream); display: grid; place-items: center; }
+
+  /* Before you book */
+  .policies { background: var(--green); color: var(--cream); margin-top: 64px; padding: 60px 0 64px; }
+  .policies h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(36px, 5.5vw, 58px); line-height: 1; margin: 0 0 30px; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .col { border-top: 2px solid var(--peach-deep); padding-top: 16px; }
+  .col h3 { font-size: 18px; font-weight: 600; margin: 0 0 8px; }
+  .col p { font-size: 15px; line-height: 1.6; margin: 0; color: #e9ddd0; }
+  .col a { color: var(--peach); }
+  .contact { margin-top: 34px; font-size: 15.5px; color: #e9ddd0; }
+  .contact a { color: var(--peach); font-weight: 600; }
+
+  a:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 18px; }
+    .hero { padding: 44px 0 40px; }
+    .group { padding-top: 48px; }
+    .signature { grid-template-columns: 1fr; padding: 26px; }
+    .cols { grid-template-columns: 1fr; gap: 22px; }
+    .grid { grid-template-columns: 1fr; }
+    .banner strong { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Private + 1 on 1 sessions</p>
+    <h1>Time set aside just for you</h1>
+    <p class="lede">Stretch therapy, herbal steams, tarot and astrology readings, Reiki, herbal consultations and private pole lessons, one on one with our practitioners at the house on West Baltimore Street.</p>
+    <nav class="jump" aria-label="Jump to a type of session">
+      <a class="primary" href="#stretch">Stretch &amp; bodywork</a>
+      <a href="#steam">Herbal steam</a>
+      <a href="#readings">Readings</a>
+      <a href="#energy">Energy &amp; herbal</a>
+      <a href="#movement">Private pole</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="services"></main>
+
+<section class="policies" aria-labelledby="before">
+  <div class="wrap">
+    <h2 id="before">Before you book</h2>
+    <div class="cols">
+      <div class="col">
+        <h3>Deposits and payment</h3>
+        <p>Some sessions take a $25 deposit when you book, with the rest due at your visit. Membership credits work on most private sessions.</p>
+      </div>
+      <div class="col">
+        <h3>Changing your time</h3>
+        <p>Cancel or reschedule at least 4 hours before your session to keep your payment. Late cancellations and no-shows forfeit the payment. All purchases are non-refundable. <a href="https://www.sacredhousemd.com/terms" target="_top">Full policy</a></p>
+      </div>
+      <div class="col">
+        <h3>Your first visit</h3>
+        <p>A signed <a href="https://www.sacredhousemd.com/waiver" target="_top">waiver</a> is required before your first session. Our sessions support relaxation and wellness and are not medical treatment.</p>
+      </div>
+    </div>
+    <p class="contact">Not sure which session fits? Call or text <a href="tel:+14435520283" target="_top">443-552-0283</a> or email <a href="mailto:sacredhousemd@gmail.com" target="_top">sacredhousemd@gmail.com</a>.</p>
+  </div>
+</section>
+
+<script>
+  // Edit services here. "slug" is the end of the Wix booking link.
+  var SITE = "https://www.sacredhousemd.com";
+  var MEMBERSHIP_URL = SITE + "/plans-pricing";
+
+  var GROUPS = [
+    { id: "stretch", title: "Stretch & bodywork",
+      intro: "Assisted stretching and massage to release built-up tension and help you move freely again.",
+      items: [
+        { name: "30 Min Stretchy Therapy", slug: "30-min-stretchy-therapy", price: "$60", dur: "30 min", note: "$25 deposit to book",
+          tag: "A quick, focused reset. We target your tightest areas so you leave moving more freely." },
+        { name: "45-Min Stretch Therapy", slug: "45-min-stretch-therapy", price: "$90", dur: "45 min", note: "$25 deposit to book",
+          tag: "A full-body stretch for high-stress jobs, athletes, dancers, yogis and anyone carrying tension." },
+        { name: "Massage & Stretch", slug: "massage-stretch", price: "$160", dur: "70 min", note: "$25 deposit to book",
+          tag: "Therapeutic massage and guided stretching in one session, for deep relaxation and real relief." }
+      ] },
+    { id: "steam", title: "Herbal steam",
+      intro: "Warm, aromatic herbal steams in a quiet, private room.",
+      signature: { name: "High Priestess Steam", slug: "high-priestess-steam", price: "$144.44", dur: "90 min",
+          tag: "Our signature steam, with extended time, intentional care and a sacred space for deep rest and release." },
+      items: [
+        { name: "Royal Steam", slug: "royal-steam-30-min", price: "$44", dur: "30 min", note: "",
+          tag: "A gentle introduction to herbal steaming. Aromatic herbs, warmth and quiet time to rest." }
+      ],
+      fine: "Steams are not for use during pregnancy, during your period, with an IUD, or with any infection." },
+    { id: "readings", title: "Readings",
+      intro: "Sit down one on one for a full tarot reading, or try a Deep Sip, a 15-minute mini reading on one focused question.",
+      items: [
+        { name: "45 Min Tarot Reading", slug: "45-min-tarot-reading", price: "$80", dur: "45 min", note: "$20 deposit to book",
+          tag: "A full tarot reading to help you see what's in front of you and where you're headed." },
+        { name: "Deep Sip: Astrology", slug: "mini-astrology-reading-deep-sip", price: "$22.22", dur: "15 min", note: "$11.11 deposit to book",
+          tag: "A mini astrology reading. Bring your birth date, time and place for a quick look at your chart." },
+        { name: "Deep Sip: Human Design", slug: "mini-human-design-reading-deep-sip", price: "$22.22", dur: "15 min", note: "$11.11 deposit to book",
+          tag: "A mini Human Design reading. Learn your type and how you're designed to make decisions." }
+      ] },
+    { id: "energy", title: "Energy & herbal",
+      intro: "Gentle energy work and personal herbal guidance.",
+      items: [
+        { name: "Reiki", slug: "reiki", price: "$44.44", dur: "20 min", note: "Request a time · pay at your visit",
+          tag: "Gentle energy healing to calm your nervous system, clear blockages and bring you back into balance." },
+        { name: "Herbal Consultation", slug: "herbal-consultation", price: "$50", dur: "40 min", note: "$25 deposit to book",
+          tag: "Talk through your wellness goals and leave with a custom herbal ritual plan for stress, digestion and more." },
+        { name: "Know Your Blood Type", slug: "know-your-blood-type", price: "$44.44", dur: "", note: "",
+          tag: "Find out your ABO and Rh type in minutes with a single drop of blood. For information only, not a medical test." }
+      ],
+      fine: "Herbal consultations are educational and do not replace care from a licensed healthcare provider." },
+    { id: "movement", title: "Private pole",
+      intro: "One-on-one pole instruction at your pace, whether it's your first climb or you're working on a new trick.",
+      items: [
+        { name: "Private Pole Lesson", slug: "private-pole-lesson", price: "$45", dur: "60 min", note: "",
+          tag: "Learn with an instructor's full attention. Wear shorts and skip lotion that day so you can grip." }
+      ] }
+  ];
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
+  }
+  function link(cls, text, href, label) {
+    var a = el("a", cls, text);
+    a.href = href; a.target = "_top";
+    if (label) a.setAttribute("aria-label", label);
+    return a;
+  }
+  function facts(s) {
+    var f = el("div", "facts");
+    f.appendChild(el("span", "price", s.price));
+    if (s.dur) f.appendChild(el("span", "dur", s.dur));
+    return f;
+  }
+  function actions(s) {
+    var a = el("div", "actions");
+    a.appendChild(link("book", "Book", SITE + "/booking-calendar/" + s.slug, "Book " + s.name));
+    a.appendChild(link("details", "Details", SITE + "/service-page/" + s.slug, s.name + " details"));
+    return a;
+  }
+
+  var main = document.getElementById("services");
+  GROUPS.forEach(function (g) {
+    var sec = el("section", "group"); sec.id = g.id;
+    var h = el("h2", "", g.title); h.id = g.id + "-h"; sec.setAttribute("aria-labelledby", h.id);
+    sec.appendChild(h);
+    sec.appendChild(el("p", "intro", g.intro));
+
+    if (g.signature) {
+      var s = g.signature, sig = el("article", "signature");
+      var left = el("div");
+      left.appendChild(el("p", "label", "Our signature"));
+      left.appendChild(el("h3", "", s.name));
+      left.appendChild(el("p", "", s.tag));
+      var side = el("div", "side");
+      side.appendChild(facts(s));
+      side.appendChild(actions(s));
+      sig.appendChild(left); sig.appendChild(side);
+      sec.appendChild(sig);
+    }
+
+    var grid = el("div", "grid");
+    g.items.forEach(function (s) {
+      var c = el("article", "card");
+      c.appendChild(el("h3", "", s.name));
+      c.appendChild(el("p", "tag", s.tag));
+      c.appendChild(facts(s));
+      c.appendChild(el("p", "note", s.note));
+      c.appendChild(actions(s));
+      grid.appendChild(c);
+    });
+    sec.appendChild(grid);
+    if (g.fine) sec.appendChild(el("p", "fineprint", g.fine));
+    main.appendChild(sec);
+  });
+
+  var banner = link("banner", "", MEMBERSHIP_URL);
+  var txt = el("div");
+  txt.appendChild(el("strong", "", "Members save on private sessions"));
+  txt.appendChild(el("span", "", "Use your membership credits on stretch, steam, consultations and more."));
+  var arrow = el("span", "arrow");
+  arrow.setAttribute("aria-hidden", "true");
+  arrow.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  banner.appendChild(txt); banner.appendChild(arrow);
+  main.appendChild(banner);
+</script>
+</body>
+</html>
